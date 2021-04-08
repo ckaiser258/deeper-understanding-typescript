@@ -1,6 +1,11 @@
 let userInput: unknown;
 let userName: string;
 
+const button = document.querySelector("button");
+button?.addEventListener("click", () => {
+  console.log("Clicked!");
+});
+
 userInput = 5;
 userInput = "Max";
 if (typeof userInput === "string") {
