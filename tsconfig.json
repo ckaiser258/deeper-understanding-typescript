@@ -20,8 +20,8 @@
     // "declarationMap": true,                      /* Generates a sourcemap for each corresponding '.d.ts' file. */
     // "sourceMap": true Adds your .ts files to the sources tab in your dev tools /* Generates corresponding '.map' file. */,
     // "outFile": "./",                             /* Concatenate and emit output to single file. */
-    // "outDir": "./",                              /* Redirect output structure to the directory. */
-    // "rootDir": "./",                             /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    "outDir": "./dist", //Where .js files should be compiled to           /* Redirect output structure to the directory. */
+    "rootDir": "./src", //specify the folder to look at for .ts files to be compiled from     /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                           /* Enable project compilation */
     // "tsBuildInfoFile": "./",                     /* Specify file to store incremental compilation information */
     // "removeComments": true,                      /* Do not emit comments to output. */
@@ -78,6 +78,6 @@
     "node_modules" //would be the default without having "exclude" in here
   ],
   "include": [
-    "app.ts" //anything not in this array won't be compiled
+    "src/app.ts" //anything not in this array won't be compiled
   ]
 }
