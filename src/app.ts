@@ -2,9 +2,12 @@ let userInput: unknown;
 let userName: string;
 
 const button = document.querySelector("button");
-button?.addEventListener("click", () => {
-  console.log("Clicked!");
-});
+//since we have strictBindCallApply on, clickHandler.bind(null) would throw an error since clickHandler() needs an argument
+button?.addEventListener("click", clickHandler.bind(null, "You're welcome!"));
+
+function clickHandler(message: string) {
+  console.log("Clicked! " + message);
+}
 
 userInput = 5;
 userInput = "Max";
