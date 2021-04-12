@@ -6,7 +6,16 @@ const button = document.querySelector("button");
 button?.addEventListener("click", clickHandler.bind(null, "You're welcome!"));
 
 function clickHandler(message: string) {
+  // let userName = "Colton"
   console.log("Clicked! " + message);
+}
+
+function add(n1: number, n2: number) {
+  if (n1 + n2 > 0) {
+    return true;
+  }
+  //since noImplicitReturns is set to true, we need to explicity have a return statement for any scenario
+  return;
 }
 
 userInput = 5;
