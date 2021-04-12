@@ -41,10 +41,11 @@
     // "alwaysStrict": true,   //put "use strict" at top of .js files                     /* Parse in strict mode and emit "use strict" for each source file. */
 
     /* Additional Checks */
-    // "noUnusedLocals": true,                      /* Report errors on unused locals. */
-    // "noUnusedParameters": true,                  /* Report errors on unused parameters. */
-    // "noImplicitReturns": true,                   /* Report error when not all code paths in function return a value. */
-    // "noFallthroughCasesInSwitch": true,          /* Report errors for fallthrough cases in switch statement. */
+    "noUnusedLocals": true, //complains about unused values within a function. WILL NOT complain about unused globals since they could be used in other files.
+    /* Report errors on unused locals. */
+    "noUnusedParameters": true /* Report errors on unused parameters. */,
+    "noImplicitReturns": true, //complains when a function sometimes explicitly returns something and sometimes does not /* Report error when not all code paths in function return a value. */,
+    // "noFallthroughCasesInSwitch": true, //complains if you forget 'break' in a switch statement         /* Report errors for fallthrough cases in switch statement. */
     // "noUncheckedIndexedAccess": true,            /* Include 'undefined' in index signature results */
     // "noPropertyAccessFromIndexSignature": true,  /* Require undeclared properties from index signatures to use element accesses. */
 
