@@ -1,16 +1,20 @@
 class Department {
-  name: string;
+  // private id: string
+  // private name: string;
   //Making employees private means you can't modify the employees array in any way besides using methods defined in this class
   private employees: string[] = [];
 
-  constructor(n: string) {
-    this.name = n;
+  //can also define identifiers within the constructor arguments itself
+  constructor(private id: string, public name: string) {
+    // no longer need these because they're in the constructor
+    // this.id = id
+    // this.name = n;
   }
 
   describe(this: Department) {
     //passing this: Department makes sure 'this' will always refer to an instance of the Department class or an object with the exact structure
     //prevents bugs because now you can't call this method on anything that doesn't have a name property
-    console.log(`Department: ${this.name}`);
+    console.log(`Department: ((${this.id})) ${this.name}`);
   }
 
   addEmployee(employee: string) {
@@ -22,7 +26,7 @@ class Department {
   }
 }
 
-const accounting = new Department("Accounting");
+const accounting = new Department("d1", "Accounting");
 accounting.addEmployee("Colton");
 accounting.addEmployee("Max");
 
