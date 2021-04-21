@@ -1,11 +1,12 @@
 class Department {
-  // private id: string
+  // private readonly id: string
   // private name: string;
   //Making employees private means you can't modify the employees array in any way besides using methods defined in this class
   private employees: string[] = [];
 
   //can also define identifiers within the constructor arguments itself
-  constructor(private id: string, public name: string) {
+  //by using readonly, something is never allowed to be changed after it's constructed
+  constructor(private readonly id: string, public name: string) {
     // no longer need these because they're in the constructor
     // this.id = id
     // this.name = n;
