@@ -2,7 +2,8 @@ class Department {
   // private readonly id: string
   // private name: string;
   //Making employees private means you can't modify the employees array in any way besides using methods defined in this class
-  private employees: string[] = [];
+  //Making it protected means you can access it but only in other classes that inherit from this class
+  protected employees: string[] = [];
 
   //can also define identifiers within the constructor arguments itself
   //by using readonly, something is never allowed to be changed after it's constructed
@@ -46,6 +47,13 @@ class AccountingDepartment extends Department {
   addReport(text: string) {
     this.reports.push(text);
   }
+  //Can override methods and properties defined in the class being inherited from
+  addEmployee(name: string) {
+    if (name === "Colton") {
+      return;
+    }
+    this.employees.push(name);
+  }
 
   printReports() {
     console.log(this.reports);
@@ -65,7 +73,11 @@ const accounting = new AccountingDepartment("d2", []);
 
 accounting.addReport("Something went wrong...");
 
+accounting.addEmployee("Colton");
+accounting.addEmployee("Max");
+
 accounting.printReports();
+accounting.printEmployeeInformation();
 
 // const accountingCopy = { name: "DUMMY", describe: accounting.describe };
 
