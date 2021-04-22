@@ -27,12 +27,45 @@ class Department {
   }
 }
 
-const accounting = new Department("d1", "Accounting");
-accounting.addEmployee("Colton");
-accounting.addEmployee("Max");
+class ITDepartment extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    //any time you add a constructor to a class that inherits from another class, you need to add super()
+    //super calls the constructor of the base class (Department), so requires any arguments in that constructor if they exist
+    super(id, "IT");
+    //'this' can only be used after calling super()
+    this.admins = admins;
+  }
+}
 
-accounting.describe();
-accounting.printEmployeeInformation();
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+  }
+  //Can add methods for inherited classes as well
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const it = new ITDepartment("d1", ["Colton"]);
+it.addEmployee("Colton");
+it.addEmployee("Max");
+
+it.describe();
+it.printEmployeeInformation();
+
+console.log(it);
+
+const accounting = new AccountingDepartment("d2", []);
+
+accounting.addReport("Something went wrong...");
+
+accounting.printReports();
 
 // const accountingCopy = { name: "DUMMY", describe: accounting.describe };
 
