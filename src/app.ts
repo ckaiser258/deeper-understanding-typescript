@@ -1,4 +1,7 @@
 class Department {
+  //static makes fiscalYear accessible without instantiating an instance of Department
+  static fiscalYear = 2021;
+
   // private readonly id: string
   // private name: string;
   //Making employees private means you can't modify the employees array in any way besides using methods defined in this class
@@ -11,6 +14,15 @@ class Department {
     // no longer need these because they're in the constructor
     // this.id = id
     // this.name = n;
+    console.log(Department.fiscalYear);
+    //this.fiscalYear won't work because 'this' refers to the instance based on the class, but the static property
+    //is not available on instances
+  }
+
+  //static methods are meant to be accessed directly on the class itself without instantiating it
+  //ex: Department.createEmployee
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -80,6 +92,9 @@ class AccountingDepartment extends Department {
     console.log(this.reports);
   }
 }
+
+const employee1 = Department.createEmployee("Colton");
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment("d1", ["Colton"]);
 it.addEmployee("Colton");
