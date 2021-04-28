@@ -64,6 +64,7 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartment;
 
   //getters are methods that allow us to access private properties outside the class in ways defined
   get mostRecentReport() {
@@ -82,9 +83,20 @@ class AccountingDepartment extends Department {
     this.addReport(value);
   }
 
-  constructor(id: string, private reports: string[]) {
+  //creating a private constructor makes it so that you can't create an object based on this class (using the 'new' keyword)
+  //can only create a new instance of this class by creating a method inside this class that does so (getInstance() below)
+  private constructor(id: string, private reports: string[]) {
     super(id, "Accounting");
     this.lastReport = reports[0];
+  }
+
+  //create a method that makes it so we can only have one instance of this class (since we have a private constructor)
+  static getInstance() {
+    if (this.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment("d2", []);
+    return this.instance;
   }
 
   describe() {
@@ -121,7 +133,12 @@ it.printEmployeeInformation();
 
 console.log(it);
 
-const accounting = new AccountingDepartment("d2", []);
+//since AccountingDepartment has a private constructor we cannot use the line below
+// const accounting = new AccountingDepartment("d2", []);
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
+//both accounting and accounting2 are the same since only 1 instance can be created
+console.log(accounting, accounting2);
 
 //this calls the mostRecent report setter method defined in AccountingDepartment
 //notice it does not need to be called with ()
