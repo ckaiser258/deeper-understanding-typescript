@@ -1,4 +1,6 @@
-class Department {
+//since we are creating an abstract method in this class, we need to have the abstract keyword in front of the class itself as well
+//making a class abstract also means we can't instantiate Department itself. it's now only a class that's meant to be inherited from
+abstract class Department {
   //static makes fiscalYear accessible without instantiating an instance of Department
   static fiscalYear = 2021;
 
@@ -10,7 +12,7 @@ class Department {
 
   //can also define identifiers within the constructor arguments itself
   //by using readonly, something is never allowed to be changed after it's constructed
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // no longer need these because they're in the constructor
     // this.id = id
     // this.name = n;
@@ -25,11 +27,16 @@ class Department {
     return { name: name };
   }
 
-  describe(this: Department) {
-    //passing this: Department makes sure 'this' will always refer to an instance of the Department class or an object with the exact structure
-    //prevents bugs because now you can't call this method on anything that doesn't have a name property
-    console.log(`Department: ((${this.id})) ${this.name}`);
-  }
+  //abstract methods are methods that you want to be used by instances of this base class,
+  //but that will need their own implementation of it
+  //so any instance created from Department will be forced to override the describe() function here
+  abstract describe(this: Department): void;
+  //abstract methods should not have curly braces and need a return type (void in this case)
+  // {
+  //passing this: Department makes sure 'this' will always refer to an instance of the Department class or an object with the exact structure
+  //prevents bugs because now you can't call this method on anything that doesn't have a name property
+  // console.log(`Department: ((${this.id})) ${this.name}`);
+  // }
 
   addEmployee(employee: string) {
     this.employees.push(employee);
@@ -48,6 +55,10 @@ class ITDepartment extends Department {
     super(id, "IT");
     //'this' can only be used after calling super()
     this.admins = admins;
+  }
+
+  describe() {
+    console.log(`IT Department - ID: ${this.id}`);
   }
 }
 
@@ -75,6 +86,11 @@ class AccountingDepartment extends Department {
     super(id, "Accounting");
     this.lastReport = reports[0];
   }
+
+  describe() {
+    console.log(`Accounting Department - ID: ${this.id}`);
+  }
+
   //Can add methods for inherited classes as well
   addReport(text: string) {
     this.reports.push(text);
@@ -119,8 +135,9 @@ console.log(accounting.mostRecentReport);
 accounting.addEmployee("Colton");
 accounting.addEmployee("Max");
 
-accounting.printReports();
-accounting.printEmployeeInformation();
+// accounting.printReports();
+// accounting.printEmployeeInformation();
+accounting.describe();
 
 // const accountingCopy = { name: "DUMMY", describe: accounting.describe };
 
