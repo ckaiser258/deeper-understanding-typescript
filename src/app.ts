@@ -5,7 +5,9 @@
 //interfaces are often used to share structure amongst different classes
 //different from abstract classes because abstract classes have concrete implementation and overriding
 interface Greetable {
-  name: string;
+  //readonly makes it so this property can only be set once. cannot be changed after the object has been initialized
+  //this can also be used on types
+  readonly name: string;
 
   greet(phrase: string): void;
 }
@@ -13,6 +15,7 @@ interface Greetable {
 //can implement multiple interfaces (separated by comma) as opposed to extends where you can only inherit one
 //can create more methods and properties within this class (and even use it as extends) but now it needs to include the Greetable structure
 class Person implements Greetable {
+  //name is automatically readonly since Person is implementing Greetable
   name: string;
   age = 30;
 
@@ -27,8 +30,10 @@ class Person implements Greetable {
 
 //can also say user1: Person. but this works too because Person is based on the Greetable interface
 let user1: Greetable;
+//now we know that whatever is in user1 has to have at least what is in Greetable
 
 user1 = new Person("Colton");
+// user1.name = 'Manu' //this will not work because name is a readonly property as defined in Greetable. So it can't be changed after initialized
 
 user1.greet("Hi there - I am");
 console.log(user1);
