@@ -1,4 +1,4 @@
-//interfaces are used to create a structure for objects
+//interfaces are used to create a structure for objects or functions
 //different from type because interfaces can only be used to describe the structure of an object
 //interfaces are clearer because of this for defining object types
 //can implement an interface within a class
@@ -32,6 +32,17 @@ class Person implements Greetable {
     console.log(`${phrase} ${this.name}`);
   }
 }
+
+//can create interfaces for functions as well
+interface Addfn {
+  (a: number, b: number): number;
+}
+
+let add: Addfn;
+
+add = (n1: number, n2: number) => {
+  return n1 + n2;
+};
 
 //can also say user1: Person. but this works too because Person is based on the Greetable interface
 let user1: Greetable;
