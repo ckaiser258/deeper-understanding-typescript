@@ -7,7 +7,9 @@
 
 interface Named {
   //readonly makes it so this property can only be set once. cannot be changed after the object has been initialized
-  readonly name: string;
+  readonly name?: string;
+  //adding a '?' makes this property optional
+  outputName?: string;
 }
 //interfaces can also extend others
 //now anything based on the Greetable interface also needs a name property
@@ -21,15 +23,21 @@ interface Greetable extends Named {
 //can create more methods and properties within this class (and even use it as extends) but now it needs to include the Greetable structure
 class Person implements Greetable {
   //name is automatically readonly since Person is implementing Greetable
-  name: string;
+  name?: string;
   age = 30;
 
-  constructor(n: string) {
-    this.name = n;
+  constructor(n?: string) {
+    if (n) {
+      this.name = n;
+    }
   }
 
   greet(phrase: string) {
-    console.log(`${phrase} ${this.name}`);
+    if (this.name) {
+      console.log(`${phrase} ${this.name}`);
+    } else {
+      console.log("Hi!");
+    }
   }
 }
 
@@ -48,6 +56,7 @@ add = (n1: number, n2: number) => {
 let user1: Greetable;
 //now we know that whatever is in user1 has to have at least what is in Greetable
 
+//this would work as new Person() as well since name is an optional property
 user1 = new Person("Colton");
 // user1.name = 'Manu' //this will not work because name is a readonly property as defined in Greetable. So it can't be changed after initialized
 
