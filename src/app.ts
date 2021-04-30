@@ -4,11 +4,16 @@
 //can implement an interface within a class
 //interfaces are often used to share structure amongst different classes
 //different from abstract classes because abstract classes have concrete implementation and overriding
-interface Greetable {
-  //readonly makes it so this property can only be set once. cannot be changed after the object has been initialized
-  //this can also be used on types
-  readonly name: string;
 
+interface Named {
+  //readonly makes it so this property can only be set once. cannot be changed after the object has been initialized
+  readonly name: string;
+}
+//interfaces can also extend others
+//now anything based on the Greetable interface also needs a name property
+//can also extend multiple interfaces by separating them with a comma
+interface Greetable extends Named {
+  //this can also be used on types
   greet(phrase: string): void;
 }
 
