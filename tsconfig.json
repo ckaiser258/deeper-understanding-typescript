@@ -79,7 +79,6 @@
     "node_modules" //would be the default without having "exclude" in here
   ],
   "include": [
-    "src/app.ts",
-    "src/classes.ts" //anything not in this array won't be compiled
+    "src/app.ts" //anything not in this array won't be compiled
   ]
 }
