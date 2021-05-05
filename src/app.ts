@@ -78,3 +78,35 @@ function useVehicle(vehicle: Vehicle) {
 
 useVehicle(v1);
 useVehicle(v2);
+
+//a discriminated union is a common property across every object that makes up a union which describes the object
+interface Bird {
+  //setting a 'type' here (this property can be named anything, but is usually 'type' or 'kind') allows us to use discriminated union
+  //for type guarding
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+//both Bird and Horse have a type property
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    //we get autocomplete here
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    //and here since typescript knows there are limited options for 'type'
+    case "horse":
+      speed = animal.runningSpeed;
+  }
+  console.log(`Moving at speed: ${speed}`);
+}
+
+moveAnimal({ type: "bird", flyingSpeed: 10 });
