@@ -110,3 +110,20 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: "bird", flyingSpeed: 10 });
+
+//typescript doesn't read specific html elements, so we need to tell it the exact type
+//HTMLInputElement is available because we're including 'dom' in the lib in tsconfig
+// const userInputElement = <HTMLInputElement>document.getElementById("user-input");
+//typecasting with angle brackets like this can class with React if you're using that, so below might be a better option
+// const userInputElement = document.getElementById(
+//   "user-input"
+// ) as HTMLInputElement;
+
+// userInputElement.value = "Hi there!";
+
+const userInputElement = document.getElementById("user-input");
+
+//can also do below if you're not sure element will exist
+if (userInputElement) {
+  (userInputElement as HTMLInputElement).value = "Hi there!";
+}
