@@ -127,3 +127,17 @@ const userInputElement = document.getElementById("user-input");
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = "Hi there!";
 }
+
+interface ErrorContainer {
+  // {email: 'Not a valid email', username: 'Must start with a character'}
+  //index property. we don't know exactly which of these properties above will be returned
+  //so we tell typescript it should have some sort of property that should be converted to a string
+  //and the value for that property should be a string
+  //can't use boolean in an index property
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  username: "Must start with a capital character",
+};
