@@ -52,6 +52,14 @@ const fetchedUserData = {
 //optional chaining is great for if you don't know if certain properties will be coming back
 console.log(fetchedUserData?.job?.title);
 
+const userInput = "";
+
+// nullish coalescing. treats the empty string or 0 as true instead of false
+// prevents errors where if you were to use userInput || 'DEFAULT' here, you'd get 'DEFAULT' since '' is false in javascript
+const storedData = userInput ?? "DEFAULT";
+
+console.log(storedData);
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
