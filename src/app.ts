@@ -43,6 +43,15 @@ const result = add("Colton", " Kaiser");
 //now typescript knows that the above will return a string (not a number OR a string), so it doesn't yell at us for using .split()
 result.split(" ");
 
+const fetchedUserData = {
+  id: "u1",
+  name: "Colton",
+  job: { title: "CEO", description: "My own company" },
+};
+
+//optional chaining is great for if you don't know if certain properties will be coming back
+console.log(fetchedUserData?.job?.title);
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
