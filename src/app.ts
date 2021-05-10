@@ -23,6 +23,14 @@ type Numeric = number | boolean;
 //ex: Universal is of type number because it is the only thing the two have in common, but could be more
 type Universal = Combinable & Numeric;
 
+//function overloading. letting typescript know that if the function add() has two numbers, it will return a number
+//and if it has two strings, it will return a string
+// typescript doesn't know this automatically, it only knows that Combinable (a string or a number) will be returned
+//this makes it so we can't use specific functions specifically for numbers or strings, etc. (ex: .split())
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: number, b: string): string;
+function add(a: string, b: number): string;
 function add(a: Combinable, b: Combinable) {
   //type guarding:
   if (typeof a === "string" || typeof b === "string") {
@@ -30,6 +38,10 @@ function add(a: Combinable, b: Combinable) {
   }
   return a + b;
 }
+
+const result = add("Colton", " Kaiser");
+//now typescript knows that the above will return a string (not a number OR a string), so it doesn't yell at us for using .split()
+result.split(" ");
 
 type UnknownEmployee = Employee | Admin;
 
