@@ -17,7 +17,8 @@ promise.then((data) => {
 });
 
 // create our own generic as a function
-function merge<T, U>(objA: T, objB: U) {
+//extends object is adding a constraint which makes that type need to be an object (can be used with any types, including ones you make)
+function merge<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 
