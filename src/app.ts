@@ -44,3 +44,14 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 }
 
 console.log(countAndDescribe(["Sports", "Cooking"]));
+
+//can use keyof to tell typescript you will be accessing a property on an object
+//this allows us to make sure we're trying to access a property that exists on the object
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return `Value: ${obj[key]}`;
+}
+
+extractAndConvert({ name: "Max" }, "name");
