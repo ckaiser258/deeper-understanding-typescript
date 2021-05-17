@@ -28,3 +28,19 @@ const mergedObj = merge({ name: "Colton", hobbies: ["Sports"] }, { age: 28 });
 // if we did merge(objA: object, objB: object), typescript wouldn't let us access "age" on this because
 //all it would know is that two random objects are being returned
 console.log(mergedObj.age);
+
+interface Lengthy {
+  length: number;
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Got no value.";
+  if (element.length === 1) {
+    descriptionText = `Got 1 element.`;
+  } else if (element.length > 1) {
+    descriptionText = `Got ${element.length} elements.`;
+  }
+  return [element, descriptionText];
+}
+
+console.log(countAndDescribe(["Sports", "Cooking"]));
