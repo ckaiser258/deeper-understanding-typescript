@@ -90,3 +90,32 @@ const numberStorage = new DataStorage<number>();
 // objStorage.addItem({ name: "Manu" });
 // objStorage.removeItem({ name: "Max" });
 // console.log(objStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  // Partial<CourseGoal> tells typescript that courseGoal will eventually be an object of type CourseGoal
+  // now every property in courseGoal is optional
+  // now we're allowed to initialize courseGoal as an empty object and add to it from there
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  // need 'as CourseGoal' because we need to return a CourseGoal and not a Partial<CourseGoal>
+  return courseGoal as CourseGoal;
+}
+
+const names2: Readonly<string[]> = ["Colton", "Anna"];
+// putting Readonly makes this variable unable to be changed
+// so the below won't work
+// can use this with objects etc. as well
+// names2.push('Manu')
+// names2.pop()
