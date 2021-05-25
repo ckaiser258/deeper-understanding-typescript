@@ -1,11 +1,13 @@
 //a decorator is a function you apply to a class in a certain way
-function Logger(constructor: Function) {
-    console.log('Logging...')
-    console.log(constructor)
+function Logger(logString: string) {
+    return function(constructor: Function) {
+        console.log(logString)
+        console.log(constructor)
+    }
 }
 
 // decorators execute when you define an object, not when you create it (with new Person())
-@Logger
+@Logger('LOGGING - PERSON')
 class Person {
     name = "Colton"
 
