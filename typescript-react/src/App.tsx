@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { Todo } from "./todo.model";
 
 import TodoList from "./components/TodoList";
 import NewTodo from "./components/NewTodo";
+import { v4 as uuid } from "uuid";
 
 const App: React.FC = () => {
-  const todos = [{ id: "t1", text: "Finish the course" }];
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const todoAddHandler = (text: string) => {
-    console.log(text);
+    setTodos((prevTodos) => [...prevTodos, { id: uuid(), text }]);
   };
   return (
     <div className="App">
